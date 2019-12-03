@@ -82,16 +82,16 @@ CREATE TABLE IF NOT EXISTS app_role_frontend_scope (
 
 CREATE TABLE IF NOT EXISTS app_role_permission (
     app_role_permission_id uuid NOT NULL,
-    app_role_id uuid NOT NULL,
-    app_role_frontend_scope_id uuid NULL,
-    app_role_api_scope_id uuid NULL,
-    display_name varchar(128) NOT NULL,
-    description varchar(255),
-    created_by varchar(32),
-    updated_by varchar(32),
-    created_dtm timestamptz NOT NULL,
-    updated_dtm timestamptz NOT NULL,
-    revision_count numeric NOT NULL,
+	app_role_id uuid NOT NULL,
+	app_role_frontend_scope_id uuid NULL,
+	app_role_api_scope_id uuid NULL,
+	display_name varchar(128) NOT NULL,
+	description varchar(255) NULL,
+	created_by varchar(32) NULL,
+	updated_by varchar(32) NULL,
+	created_dtm timestamptz NOT NULL,
+	updated_dtm timestamptz NOT NULL,
+	revision_count numeric NOT NULL,
     CONSTRAINT pk_app_role_permission PRIMARY KEY (app_role_permission_id),
     CONSTRAINT fk_app_role FOREIGN KEY (app_role_id) REFERENCES app_role(app_role_id),
     CONSTRAINT fk_app_role_frontend_scope FOREIGN KEY (app_role_frontend_scope_id) REFERENCES app_role_frontend_scope(app_role_frontend_scope_id),
@@ -152,4 +152,10 @@ INSERT INTO shersched.app_role_frontend_scope (app_role_frontend_scope_id,app_ro
 ('b8daf3ae-c3e1-4ca2-81b0-6d62d68b06f6','80294c81-cad7-4e58-ace1-76587d36530e','cf35acb6-f21c-4a8b-9261-c48df69056a6','Name, Your','Name, Your','2019-12-02 18:26:47.778','2019-12-02 18:26:47.778',0)
 ,('68856336-a28e-4afe-bfeb-a4a09f049a89','80294c81-cad7-4e58-ace1-76587d36530e','e96a6dd8-4bd0-4bd2-ae45-33840477be3e','Name, Your','Name, Your','2019-12-02 18:26:58.502','2019-12-02 18:26:58.502',0)
 ,('5aa7b20c-95e5-498b-aa8e-f2719f3c14f1','80294c81-cad7-4e58-ace1-76587d36530e','18e73e5a-ffbf-4797-b478-0f02ac236e78','Name, Your','Name, Your','2019-12-02 18:27:09.022','2019-12-02 18:27:09.022',0)
+;
+
+INSERT INTO shersched.app_role_permission (app_role_permission_id,app_role_id,app_role_frontend_scope_id,app_role_api_scope_id,display_name,description,created_by,updated_by,created_dtm,updated_dtm,revision_count) VALUES
+('0b357832-69da-4bd8-b2f2-3b860f8708e2','80294c81-cad7-4e58-ace1-76587d36530e','68856336-a28e-4afe-bfeb-a4a09f049a89',NULL,'Edit Role','Edit Role','','','2019-12-02 00:04:40.000','2019-12-02 00:04:40.000',0)
+,('26bb2c96-43a1-4ffa-bdb9-88089979fdad','80294c81-cad7-4e58-ace1-76587d36530e','68856336-a28e-4afe-bfeb-a4a09f049a89',NULL,'View Role','View Role','','','2019-12-02 00:04:40.000','2019-12-02 00:04:40.000',0)
+,('d4c11f1a-822d-4c36-84f0-3638cab19c0a','80294c81-cad7-4e58-ace1-76587d36530e','68856336-a28e-4afe-bfeb-a4a09f049a89',NULL,'Create Role','Create Role','','','2019-12-02 00:04:40.000','2019-12-02 00:04:40.000',0)
 ;
