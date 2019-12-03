@@ -159,3 +159,34 @@ INSERT INTO shersched.app_role_permission (app_role_permission_id,app_role_id,ap
 ,('26bb2c96-43a1-4ffa-bdb9-88089979fdad','80294c81-cad7-4e58-ace1-76587d36530e','68856336-a28e-4afe-bfeb-a4a09f049a89',NULL,'View Role','View Role','','','2019-12-02 00:04:40.000','2019-12-02 00:04:40.000',0)
 ,('d4c11f1a-822d-4c36-84f0-3638cab19c0a','80294c81-cad7-4e58-ace1-76587d36530e','68856336-a28e-4afe-bfeb-a4a09f049a89',NULL,'Create Role','Create Role','','','2019-12-02 00:04:40.000','2019-12-02 00:04:40.000',0)
 ;
+
+-- Test structure and data --
+-- Just a couple queries to make sure things look right
+
+-- Test user, roles, scopes & permissions:
+/*
+select au.display_name, ar.app_role_name,
+ar.description, aur.effective_date, l.location_name,
+"fs".scope_name, "fs".scope_code, arp.display_name
+from app_user au
+left join app_user_role aur on (aur.app_user_id = au.app_user_id)
+left join app_role ar on (aur.app_role_id = ar.app_role_id)
+left join "location" l on (aur.location_id = l.location_id)
+left join app_role_frontend_scope arfs on (arfs.app_role_id = ar.app_role_id)
+left join frontend_scope "fs" on ("fs".frontend_scope_id = arfs.frontend_scope_id)
+left join app_role_permission arp on (arfs.app_role_frontend_scope_id = arp.app_role_frontend_scope_id)
+*/
+-- Test permissions only
+/*
+select au.display_name, ar.app_role_name,
+ar.description, aur.effective_date, l.location_name,
+"fs".scope_name, "fs".scope_code, arp.display_name
+from app_user au
+left join app_user_role aur on (aur.app_user_id = au.app_user_id)
+left join app_role ar on (aur.app_role_id = ar.app_role_id)
+left join "location" l on (aur.location_id = l.location_id)
+left join app_role_frontend_scope arfs on (arfs.app_role_id = ar.app_role_id)
+left join frontend_scope "fs" on ("fs".frontend_scope_id = arfs.frontend_scope_id)
+right join app_role_permission arp on (arfs.app_role_frontend_scope_id = arp.app_role_frontend_scope_id)
+*/
+
