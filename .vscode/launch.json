@@ -27,6 +27,7 @@
             "request":"attach",
             "port": 9232,
             "protocol": "inspector",
+            "sourceMaps": true,
             "restart": true
         }        
     ]
